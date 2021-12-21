@@ -3,22 +3,19 @@ import React from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import Chart from './apps/components/Chart';
 import Header from './apps/components/Header';
-import ListItem from './apps/components/ListItem';
+import UserList from './apps/screens/UserList';
+import { createStore } from './apps/models/setup-root-store';
+import { RootStoreProvider } from './apps/models/root-store-context';
 
+const store = createStore();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Header />
+    <RootStoreProvider value={store}>
+      <View style={styles.container}>
+        <UserList />
       </View>
-      <View style={styles.banner}>
-        <Chart />
-      </View>
-      <View style={styles.list}>
-        <ListItem />
-      </View>
-    </View>
+    </RootStoreProvider>
   );
 }
 
